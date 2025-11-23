@@ -1,0 +1,31 @@
+name: Build Android APK
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Fix Android Gradle Settings
+        run: |
+          sed -i 's|compileSdkVersion 33|compileSdkVersion 34|g' android/app/build.gradle
+          sed -i 's|targetSdkVersion 33|targetSdkVersion 34|g' android/app/build.gradle
+          sed -i '/android {/a \        minSdkVersion 21' android/app/build.gradle
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
