@@ -1,0 +1,17 @@
+name: pumper_app
+description: A tool for downloading images.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_inappwebview: ^6.0.0
+  permission_handler: ^10.2.0
+  dio: ^5.1.1
+
+flutter:
+  uses-material-design: true
