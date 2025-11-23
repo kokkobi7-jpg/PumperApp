@@ -1,0 +1,3 @@
+// הפוך את הקובץ הזה לריק ואנחנו נתקן אותו אוטומטית בבנייה
+// זה פשוט placeholder
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
